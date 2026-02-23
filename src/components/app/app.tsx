@@ -1,4 +1,4 @@
-import { ConstructorPage } from '@pages';
+import { ConstructorPage, Feed, ForgotPassword, Login, Register } from '@pages';
 import '../../index.css';
 import styles from './app.module.css';
 
@@ -35,7 +35,6 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <p>{JSON.stringify(location)}</p>
       <AppHeader />
       {isIngredientsLoading ? (
         <Preloader />
@@ -45,6 +44,10 @@ const App = () => {
         <Routes location={background || location}>
           <Route path='/' element={<ConstructorPage />} />
           <Route path='/ingredients/:id' element={<IngredientDetails />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/feed' element={<Feed />} />
         </Routes>
       )}
       {background && (
@@ -52,7 +55,7 @@ const App = () => {
           <Route
             path='/ingredients/:id'
             element={
-              <Modal title='' onClose={() => navigate(-1)}>
+              <Modal title='Детали ингредиента' onClose={() => navigate(-1)}>
                 <IngredientDetails />
               </Modal>
             }

@@ -5,7 +5,7 @@ import { getIngredientsApi } from '../../utils/burger-api';
 export const fetchIngredients = createAsyncThunk(
   'ingredients/fetchIngredients',
   async () => {
-    const ingredients = await getIngredientsApi();
+    const ingredients = getIngredientsApi();
     return ingredients;
   }
 );
