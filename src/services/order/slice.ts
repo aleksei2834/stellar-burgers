@@ -6,18 +6,26 @@ type TOrderState = {
   orderRequest: boolean;
   orderModalData: TOrder | null;
   error: string | null;
+  order: TOrder | null;
+  isLoading: boolean;
 };
 
 const initialState: TOrderState = {
   orderRequest: false,
   orderModalData: null,
-  error: null
+  error: null,
+  order: null,
+  isLoading: false
 };
 
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
-  reducers: {},
+  reducers: {
+    closeModal: (state) => {
+      state.orderModalData = null;
+    }
+  },
   selectors: {
     getOrderRequest: (state) => state.orderRequest,
     getOrderModalData: (state) => state.orderModalData,
@@ -41,3 +49,5 @@ export const orderSlice = createSlice({
 
 export const { getOrderRequest, getOrderModalData, getError } =
   orderSlice.selectors;
+
+export const { closeModal } = orderSlice.actions;

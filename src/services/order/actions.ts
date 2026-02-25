@@ -1,4 +1,4 @@
-import { orderBurgerApi } from '@api';
+import { getOrderByNumberApi, orderBurgerApi } from '@api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { clearConstructor } from '../constructor/slice';
 
@@ -6,9 +6,9 @@ export const orderBurger = createAsyncThunk(
   'order/orderBurger',
   async (ingredients: string[], { dispatch, rejectWithValue }) => {
     try {
-      const response = await orderBurgerApi(ingredients);
+      const res = await orderBurgerApi(ingredients);
       dispatch(clearConstructor());
-      return response.order;
+      return res.order;
     } catch (err) {
       return rejectWithValue('Ошибка оформления заказа');
     }

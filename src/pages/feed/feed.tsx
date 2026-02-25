@@ -15,13 +15,7 @@ export const Feed: FC = () => {
 
   useEffect(() => {
     dispatch(getFeeds());
-
-    const interval = setInterval(() => {
-      dispatch(getFeeds());
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, [dispatch]);
+  }, []);
   if (!orders.length && isLoading) {
     return <Preloader />;
   }
