@@ -51,3 +51,5 @@ export const { getOrderRequest, getOrderModalData, getError } =
   orderSlice.selectors;
 
 export const { closeModal } = orderSlice.actions;
+
+export default orderSlice.reducer;

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { getOrderByNumber, getOrders } from './actions';
 
-type TProfileOrdersState = {
+export type TProfileOrdersState = {
   orders: TOrder[];
   isLoading: boolean;
   error: string | null;
@@ -36,7 +36,7 @@ export const profileOrdersSlice = createSlice({
       })
       .addCase(getOrders.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || null;
+        state.error = action.error.message || 'Ошибка загрузки заказов';
       })
       .addCase(getOrderByNumber.pending, (state) => {
         state.isLoading = true;
@@ -47,7 +47,8 @@ export const profileOrdersSlice = createSlice({
         state.order = action.payload;
       })
       .addCase(getOrderByNumber.rejected, (state, action) => {
-        state.error = action.error.message || null;
+        state.isLoading = false;
+        state.error = action.error.message || 'Ошибка загрузки заказа';
       });
   }
 });
