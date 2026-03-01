@@ -17,14 +17,14 @@ type TIngredient = {
 };
 
 // Тип состояния ингредиентов
-type TIngredientsState = {
+export type TIngredientsState = {
   ingredients: Array<TIngredient>;
   isLoading: boolean;
   error: string | null;
 };
 
 // Начальное состояние
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   ingredients: [],
   isLoading: false,
   error: null

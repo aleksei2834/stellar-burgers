@@ -9,7 +9,7 @@ import {
   TLoginData,
   TRegisterData,
   updateUserApi
-} from '@api';
+} from '../../utils/burger-api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { deleteCookie, setCookie } from '../../utils/cookie';
@@ -70,14 +70,21 @@ export const resetPassword = createAsyncThunk(
 
 export const checkUserAuth = createAsyncThunk(
   'user/checkUserAuth',
-  async (_, { dispatch }) => {
-    if (isTokenExists()) {
-      getUserApi()
-        .then((res) => dispatch(setUser(res.user)))
-        .then(() => dispatch(setIsAuthenticated(true)))
-        .finally(() => dispatch(setIsAuthChecked(true)));
-    } else {
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      if (isTokenExists()) {
+        const res = await getUserApi();
+        dispatch(setUser(res.user));
+        dispatch(setIsAuthenticated(true));
+      }
       dispatch(setIsAuthChecked(true));
+      return true;
+    } catch (error) {
+      dispatch(setIsAuthenticated(false));
+      dispatch(setUser(null));
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Ошибка авторизации'
+      );
     }
   }
 );

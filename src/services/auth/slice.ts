@@ -10,7 +10,7 @@ import {
   updateUser
 } from './actions';
 
-type TAuthState = {
+export type TAuthState = {
   user: TUser | null;
   isAuthChecked: boolean;
   isAuthenticated: boolean;
@@ -18,7 +18,7 @@ type TAuthState = {
   error?: string;
 };
 
-const initialState: TAuthState = {
+export const initialState: TAuthState = {
   user: null,
   isAuthChecked: false,
   isAuthenticated: false,
@@ -58,7 +58,7 @@ export const authSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.error.message || 'Ошибка регистрации';
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
@@ -145,3 +145,5 @@ export const {
 
 export const { setUser, setIsAuthChecked, setIsAuthenticated } =
   authSlice.actions;
+
+export default authSlice.reducer;
