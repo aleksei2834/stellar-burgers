@@ -36,7 +36,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       <div
         className={`${styles.noBuns} ${styles.noBunsTop} ml-8 mb-4 mr-5 text text_type_main-default`}
       >
-        Выберите булки
+        Choose buns
       </div>
     )}
     <ul className={styles.elements} data-testid='ingredients-list'>
@@ -57,7 +57,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
           className={`${styles.noBuns} ml-8 mb-4 mr-5 text text_type_main-default`}
           data-testid='no-ingredients'
         >
-          Выберите начинку
+          Choose ingredients
         </div>
       )}
     </ul>
@@ -75,7 +75,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       <div
         className={`${styles.noBuns} ${styles.noBunsBottom} ml-8 mb-4 mr-5 text text_type_main-default`}
       >
-        Выберите булки
+        Choose buns
       </div>
     )}
     <div className={`${styles.total} mt-10 mr-4`}>
@@ -87,7 +87,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
         htmlType='button'
         type='primary'
         size='large'
-        children='Оформить заказ'
+        children='Place order'
         onClick={onOrderClick}
         data-testid='place-order'
       />
@@ -96,7 +96,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
     {orderRequest && (
       <Modal
         onClose={closeOrderModal}
-        title={'Оформляем заказ...'}
+        title={'Placing order...'}
         data-testid='modal'
       >
         <Preloader />
@@ -106,7 +106,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
     {orderModalData && (
       <Modal
         onClose={closeOrderModal}
-        title={orderRequest ? 'Оформляем заказ...' : ''}
+        title={orderRequest ? 'Placing order...' : ''}
         data-testid='modal'
       >
         <OrderDetailsUI orderNumber={orderModalData.number} />

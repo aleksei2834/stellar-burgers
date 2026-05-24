@@ -3,9 +3,9 @@ import { OrderStatusProps } from './type';
 import { OrderStatusUI } from '@ui';
 
 const statusText: { [key: string]: string } = {
-  pending: 'Готовится',
-  done: 'Выполнен',
-  created: 'Создан'
+  pending: 'In progress',
+  done: 'Completed',
+  created: 'Created'
 };
 
 export const OrderStatus: FC<OrderStatusProps> = ({ status }) => {
